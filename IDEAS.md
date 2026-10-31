@@ -1,27 +1,47 @@
 # 💡 Ý tưởng dự án web cho Gen Z (có kiếm tiền được)
 
-## TL;DR
+## 0. Stack nền dùng chung cho mọi ý tưởng
 
-Mình chọn **Linkyy**: link-in-bio kết hợp mini shop bán đồ digital cho creator Gen Z ở VN, thanh toán bằng **VietQR**.
-Tiền vào từ ngày đầu nhờ phí giao dịch và gói Pro. Bản MVP code trong khoảng 4 tuần là xong.
-
----
-
-## 1. Shortlist ý tưởng
-
-| # | Ý tưởng | Vibe | Kiếm tiền | Độ khó | Rủi ro |
-|---|---------|------|-----------|--------|--------|
-| ⭐ 1 | **Linkyy**: link-in-bio + bán preset, template, ebook, khóa học mini, nhận donate qua VietQR | Creator economy | Phí giao dịch + gói Pro | Trung bình | Phải cạnh tranh với Linktree/Beacons, nhưng tụi đó chưa có thanh toán nội địa |
-| 2 | **Kèo**: lên kèo đi chơi, vote địa điểm, chia bill qua VietQR | Hội bạn thân | Quán trả tiền để được đề xuất, affiliate voucher | Trung bình | Phải gom đủ user rồi mới bán được cho quán |
-| 3 | **FitCheck AI**: up ảnh outfit, AI chấm điểm và gợi ý phối đồ kèm link mua | Thời trang | Affiliate Shopee/TikTok Shop + premium | Trung bình–cao | Gọi AI tốn tiền, cần kiểm duyệt ảnh |
-| 4 | **Focus Room**: phòng học chung online, có pomodoro, streak, nhạc lofi | Study-with-me | Freemium + bán skin/theme | Thấp–trung bình | User bỏ ngang nhiều, khó giữ chân |
-| 5 | **Wrapped Everything**: tạo card tổng kết kiểu Spotify Wrapped cho bất cứ thứ gì (năm học, crush, chi tiêu) | Viral | Ads + mở khóa template | Thấp | Hot nhanh nguội cũng nhanh |
-
-**Vì sao chọn #1?** Có dòng tiền thật ngay từ đầu, không cần chờ đông user mới kiếm được. Mỗi creator dùng là tự đem trang của mình đi share cho follower, nên growth tự chạy. Và thanh toán VietQR là thứ mà Linktree hay Beacons không có ở VN.
+| Lớp | Thư viện |
+|-----|----------|
+| Framework | Next.js (App Router, Server Actions) + React 19 + TypeScript |
+| UI | Tailwind CSS v4 + shadcn/ui + Motion (Framer Motion cũ) |
+| State / data fetching | TanStack Query + Zustand + Zod |
+| DB / ORM | Supabase hoặc Neon (Postgres) + Drizzle ORM |
+| Auth | Better Auth / Clerk / Supabase Auth |
+| Rate limit, cache | Upstash Redis |
+| Job nền | Trigger.dev / Inngest |
+| Thanh toán | payOS (VietQR), MoMo, Stripe nếu bán ra nước ngoài |
+| Theo dõi | PostHog (analytics) + Sentry (lỗi) |
+| Deploy | Vercel / Cloudflare |
 
 ---
 
-## 2. Linkyy: chi tiết sản phẩm
+## 1. List ý tưởng
+
+| # | Ý tưởng | Thư viện "đinh" | Kiếm tiền |
+|---|---------|-----------------|-----------|
+| ⭐ 1 | **Linkyy**: link-in-bio + bán đồ digital (preset, template, ebook) + nhận donate qua VietQR | dnd-kit, Motion, `@vercel/og`, payOS, Resend | Phí 5%/giao dịch + Pro 49k/tháng |
+| 2 | **ClipForge**: dán link hoặc up video, tự cắt highlight, gắn sub kiểu TikTok, xuất video dọc | **Remotion** (render video bằng React), FFmpeg.wasm, Whisper (speech-to-text), Trigger.dev | Mua credit render + gói tháng |
+| 3 | **FitCheck AI**: up ảnh outfit, AI chấm điểm, gợi ý phối đồ, tìm món tương tự để mua | Vercel AI SDK + Claude (vision), `@imgly/background-removal`, pgvector | Affiliate Shopee/TikTok Shop + premium |
+| 4 | **Speakie**: luyện nói tiếng Anh/Hàn/Nhật bằng voice với AI nhập vai (order cà phê ở Seoul, phỏng vấn xin việc...) | **LiveKit Agents** (voice realtime), Claude, TTS (ElevenLabs), STT (Deepgram) | Subscription 79k/tháng hoặc bán theo phút |
+| 5 | **Lofi Room 3D**: phòng học chung có pomodoro, avatar ngồi học trong phòng 3D, voice chat | **React Three Fiber** + drei, LiveKit, Liveblocks (presence), Howler.js | Bán skin phòng/avatar + Pro |
+| 6 | **Kèo**: lên kèo đi chơi, vote quán realtime trên map, chia bill bằng VietQR | MapLibre GL + Goong Maps, Supabase Realtime, Serwist (PWA) | Quán trả phí boost + affiliate voucher |
+| 7 | **Moodboard Collab**: vẽ moodboard/vision board chung với hội bạn trên canvas vô hạn | **tldraw SDK** hoặc Excalidraw, Yjs, Unsplash API, AI gợi ý bảng màu | Pro template + in poster/sticker theo yêu cầu (POD) |
+| 8 | **Wrapped Everything**: tạo card tổng kết viral (năm học, chi tiêu, "roast" playlist) | **GSAP** ScrollTrigger, Satori, html-to-image, Claude để viết roast | Ads + mở khóa template + nhận làm campaign cho brand (B2B) |
+| 9 | **Pass Đồ**: chợ pass đồ si/secondhand, quẹt trái phải như app hẹn hò, chat trực tiếp | **Convex** (realtime DB), Typesense/Meilisearch, Motion (cử chỉ quẹt), Cloudinary | Phí đẩy tin + hoa hồng ship |
+| 10 | **QuizBattle**: up PDF bài học, AI tạo quiz, đấu realtime với bạn bè | PartyKit / Socket.io, Claude (sinh câu hỏi), unpdf, Rive (animation) | Pro cho lớp học/CLB + ads |
+
+### Nên chọn cái nào?
+- **Muốn có tiền nhanh nhất**: #1 Linkyy. Thu phí trên từng giao dịch nên có user là có tiền.
+- **Muốn flex kỹ thuật**: #2 ClipForge hoặc #4 Speakie. Làm video và AI voice realtime, cực hợp để bỏ vào portfolio.
+- **Muốn viral**: #8 Wrapped hoặc #3 FitCheck. Kết quả là ảnh/card nên người dùng tự share.
+
+Phần dưới đi sâu vào #1 Linkyy.
+
+---
+
+## 2. Deep-dive #1: Linkyy
 
 ### Người dùng
 - **Creator** (16–28 tuổi): TikToker, designer bán preset Lightroom, người bán template Notion, artist nhận commission, streamer nhận donate.
