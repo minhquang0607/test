@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-be-vietnam), ui-sans-serif, sans-serif;
+
+  --color-ink: #17121f;
+  --color-ink-soft: #4b4358;
+  --color-paper: #fffaf2;
+  --color-line: #e8e0d4;
+  --color-lime: #d4ff3f;
+  --color-pink: #ff5fa2;
+  --color-lilac: #b9a6ff;
+  --color-sky: #8fd3ff;
+  --color-danger: #e5484d;
+  --color-success: #16a34a;
+
+  --shadow-pop: 3px 3px 0 var(--color-ink);
+  --shadow-pop-lg: 5px 5px 0 var(--color-ink);
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-lime);
+  color: var(--color-ink);
+}
+
+/* Subtle grain used on hero sections. */
+.bg-grain {
+  background-image: radial-gradient(rgba(23, 18, 31, 0.06) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
