@@ -8,6 +8,8 @@ Ký hiệu độ ưu tiên dùng xuyên suốt:
 - **P1**: làm trong giai đoạn beta và launch
 - **P2**: để sau khi đã có user
 
+> 🌟 **Đã có bản v2**: [`LINKYY_SIGNATURE.md`](LINKYY_SIGNATURE.md) bổ sung 14 signature feature, cam kết ổn định và bảng giá mới. Nếu hai bản khác nhau về **gói giá, roadmap hay storage**, lấy theo bản v2.
+
 ---
 
 ## 1. Mô tả sản phẩm
@@ -49,6 +51,8 @@ Nếu Linkyy **giữ tiền hộ** creator (thu tiền vào tài khoản Linkyy 
 > Việc cần làm trước khi launch: hỏi luật sư hoặc kế toán về (1) trung gian thanh toán, (2) đăng ký website/sàn TMĐT với Bộ Công Thương, (3) nghĩa vụ thuế của nền tảng TMĐT và của người bán cá nhân, (4) bảo vệ dữ liệu cá nhân (Nghị định 13/2023 và Luật Bảo vệ dữ liệu cá nhân).
 
 ### 1.7 Gói giá (cập nhật theo Mode A)
+> Bảng dưới là bản cũ. Bảng giá mới (Free 5 sản phẩm / 30 đơn, Pro Công Bằng, gói Sinh Viên, Day Pass, Founding 100) xem ở [`LINKYY_SIGNATURE.md` mục 3.1](LINKYY_SIGNATURE.md#31-bảng-giá-mới-thay-cho-mục-17-trong-linkyymd).
+
 | Gói | Giá | Quyền lợi |
 |-----|-----|-----------|
 | **Free** | 0đ | 1 trang, 3 sản phẩm, tối đa 20 đơn/tháng, analytics 7 ngày, có watermark "made with Linkyy" |
@@ -115,7 +119,7 @@ Tổng khoảng **1,5–2 triệu/tháng**. Bán được khoảng 40 gói Pro l
 | Data | TanStack Query (client), Zustand (state của editor) |
 | DB | Supabase Postgres + Drizzle ORM + Row Level Security |
 | Auth | Supabase Auth (Google OAuth + magic link) |
-| Storage | Supabase Storage: bucket `public` cho ảnh, bucket `private` cho file sản phẩm |
+| Storage | Ảnh public: Supabase Storage + CDN. File sản phẩm: **Cloudflare R2** (bucket private, signed URL, không tính phí egress) |
 | Thanh toán | payOS (VietQR) qua `@payos/node` |
 | Email | Resend + React Email |
 | Job / cron | Trigger.dev hoặc Vercel Cron |
