@@ -37,7 +37,7 @@
 - **Muốn flex kỹ thuật**: #2 ClipForge hoặc #4 Speakie. Làm video và AI voice realtime, cực hợp để bỏ vào portfolio.
 - **Muốn viral**: #8 Wrapped hoặc #3 FitCheck. Kết quả là ảnh/card nên người dùng tự share.
 
-Phần dưới đi sâu vào #1 Linkyy.
+Phần dưới đi sâu vào #1 Linkyy. Spec đầy đủ (plan, toàn bộ chức năng FE/BE, API, DB) nằm ở [`docs/LINKYY.md`](docs/LINKYY.md). Lưu ý: mô hình thanh toán và bảng giá trong spec đã được chỉnh lại vì lý do pháp lý, xem mục 1.6 của spec.
 
 ---
 
